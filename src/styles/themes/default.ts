@@ -16,4 +16,7 @@ export const defaultTheme = {
   'base-input': '#EDEDED',
   'base-card': '#F3F2F2',
   background: '#FAFAFA',
+
+  baloo: '"Baloo 2", cursive',
+  roboto: '"Roboto", sans-serif',
 }
