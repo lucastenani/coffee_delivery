@@ -179,7 +179,12 @@ export const ConfirmOrderButton = styled.button`
   color: ${(props) => props.theme.white};
   cursor: pointer;
 
-  &:hover {
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
     background: ${(props) => props.theme['primary-hover']};
   }
 `
