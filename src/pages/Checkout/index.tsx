@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import {
   Bank,
   CreditCard,
@@ -40,11 +42,22 @@ interface AddressFormData {
 }
 
 export function Checkout() {
+  const [deliveryAddress, setDeliveryAddress] =
+    useState<AddressFormData | null>(null)
+
   const { register, control, handleSubmit } = useForm<AddressFormData>()
+  const navigate = useNavigate()
 
   function handleConfirmOrder(data: AddressFormData) {
-    console.log(data)
+    setDeliveryAddress(data)
   }
+
+  useEffect(() => {
+    if (deliveryAddress) {
+      navigate('/success')
+    }
+  }, [deliveryAddress, navigate])
+
   return (
     <CheckoutContainer>
       <form onSubmit={handleSubmit(handleConfirmOrder)}>
