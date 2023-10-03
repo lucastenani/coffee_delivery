@@ -169,10 +169,17 @@ export const ConfirmOrderButton = styled.button`
   padding: 0.75rem 0.5rem;
   border: 0;
   border-radius: 6px;
+
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 160%;
   text-transform: uppercase;
+
   background: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.white};
+  cursor: pointer;
+
+  &:hover {
+    background: ${(props) => props.theme['primary-hover']};
+  }
 `
