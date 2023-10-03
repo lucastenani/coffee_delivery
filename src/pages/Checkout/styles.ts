@@ -29,6 +29,7 @@ export const CheckoutContainer = styled.main`
     }
   }
 `
+
 export const baseCard = styled.article`
   background-color: ${(props) => props.theme['base-card']};
   padding: 2.5rem;
@@ -171,7 +172,31 @@ export const ConfirmOrderContainer = styled.section`
 
 export const ConfirmOrderCard = styled(baseCard)`
   border-radius: 6px 44px;
+  gap: 2rem;
 `
+
+export const EmptyCartMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  a {
+    font-weight: 700;
+    color: ${(props) => props.theme['primary-hover']};
+    text-decoration: none;
+  }
+`
+
 export const ConfirmOrderButton = styled.button`
   padding: 0.75rem 0.5rem;
   border: 0;

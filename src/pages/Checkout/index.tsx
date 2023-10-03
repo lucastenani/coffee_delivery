@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   Bank,
   CreditCard,
@@ -9,12 +9,15 @@ import {
   Money,
 } from '@phosphor-icons/react'
 
+import EmptyCartImg from '../../assets/empty-cart.webp'
+
 import {
   BaseInput,
   CheckoutContainer,
   ConfirmOrderButton,
   ConfirmOrderCard,
   ConfirmOrderContainer,
+  EmptyCartMessage,
   FormCard,
   FormCardAddress,
   FormCardText,
@@ -190,6 +193,11 @@ export function Checkout() {
         <ConfirmOrderContainer>
           <h2>Selected Coffees</h2>
           <ConfirmOrderCard>
+            <EmptyCartMessage>
+              <img src={EmptyCartImg} alt="" />
+              <p>You haven not added any coffee to your cart yet</p>
+              <Link to={'/'}>Click here to continue shopping</Link>
+            </EmptyCartMessage>
             <ConfirmOrderButton type="submit">Confirm Order</ConfirmOrderButton>
           </ConfirmOrderCard>
         </ConfirmOrderContainer>
