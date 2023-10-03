@@ -91,6 +91,10 @@ export const SmallerInput = styled(BaseInput)`
 `
 export const MediumInput = styled(BaseInput)`
   max-width: 12.5rem;
+
+  @media (max-width: 425px) {
+    max-width: none;
+  }
 `
 
 export const OptionalLabel = styled.div`
@@ -116,7 +120,10 @@ export const PaymentFormCard = styled(FormCard)`
 export const PaymentMethods = styled.div`
   display: flex;
   gap: 0.75rem;
-  flex-wrap: wrap;
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+  }
 
   input {
     display: none;
