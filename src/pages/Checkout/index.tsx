@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 import {
   Bank,
   CreditCard,
@@ -26,20 +26,28 @@ import {
   SmallerInput,
 } from './styles'
 
-type SelectedPaymentMethodType = 'creditCard' | 'debitCard' | 'cash'
+// type SelectedPaymentMethodType = 'creditCard' | 'debitCard' | 'cash'
+
+// interface AddressFormData {
+//   zipCode: number
+//   streetAddress: string
+//   streetNumber: number
+//   complement: string
+//   neighborhood: string
+//   city: string
+//   state: string
+//   paymentMethod: SelectedPaymentMethodType
+// }
 
 export function Checkout() {
-  const [selectedPaymentMethod, setSelectedPaymentMethod] =
-    useState<SelectedPaymentMethodType>('creditCard')
+  const { register, control, handleSubmit } = useForm()
 
-  const handlePaymentMethodChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedValue = event.target.value as SelectedPaymentMethodType
-    setSelectedPaymentMethod(selectedValue)
+  function handleConfirmOrder(data: any) {
+    console.log(data)
   }
-
   return (
     <CheckoutContainer>
-      <form>
+      <form onSubmit={handleSubmit(handleConfirmOrder)}>
         <FormContainer>
           <h1>Complete your order</h1>
           <FormCard>
@@ -57,35 +65,37 @@ export function Checkout() {
               <div>
                 <MediumInput
                   type="number"
-                  name="zipCode"
                   id="zipCode"
                   placeholder="ZIP Code"
                   required
+                  {...register('zipCode', {
+                    valueAsNumber: true,
+                  })}
                 />
               </div>
               <div>
                 <BaseInput
                   type="text"
-                  name="streetAddress"
                   id="streetAddress"
                   placeholder="Street Address"
                   required
+                  {...register('streetAddress', {})}
                 />
               </div>
               <div>
                 <MediumInput
                   type="number"
-                  name="streetNumber"
                   id="streetNumber"
                   placeholder="Street Number"
                   required
+                  {...register('streetNumber', { valueAsNumber: true })}
                 />
                 <OptionalLabel>
                   <BaseInput
                     type="text"
-                    name="complement"
                     id="complement"
                     placeholder="Apartment, Suite, Unit"
+                    {...register('complement')}
                   />
                   <OptionalText>Optional</OptionalText>
                 </OptionalLabel>
@@ -93,26 +103,26 @@ export function Checkout() {
               <div>
                 <MediumInput
                   type="text"
-                  name="neighborhood"
                   id="neighborhood"
                   placeholder="Neighborhood"
                   required
+                  {...register('neighborhood')}
                 />
 
                 <BaseInput
                   type="text"
-                  name="city"
                   id="city"
                   placeholder="City"
                   required
+                  {...register('city')}
                 />
 
                 <SmallerInput
                   type="text"
-                  name="state"
                   id="state"
                   placeholder="State"
                   required
+                  {...register('state')}
                 />
               </div>
             </FormCardAddress>
@@ -128,51 +138,40 @@ export function Checkout() {
                 </span>
               </div>
             </FormCardText>
-            <PaymentMethods>
-              <PaymentMethodLabel
-                tabIndex={1}
-                checked={selectedPaymentMethod === 'creditCard'}
-              >
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="creditCard"
-                  onChange={handlePaymentMethodChange}
-                  defaultChecked
-                  required
-                />
-                <CreditCard size={16} />
-                Credit Card
-              </PaymentMethodLabel>
-              <PaymentMethodLabel
-                tabIndex={2}
-                checked={selectedPaymentMethod === 'debitCard'}
-              >
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="debitCard"
-                  onChange={handlePaymentMethodChange}
-                  required
-                />
-                <Bank size={16} />
-                Debit Card
-              </PaymentMethodLabel>
-              <PaymentMethodLabel
-                tabIndex={3}
-                checked={selectedPaymentMethod === 'cash'}
-              >
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="cash"
-                  onChange={handlePaymentMethodChange}
-                  required
-                />
-                <Money size={16} />
-                Cash
-              </PaymentMethodLabel>
-            </PaymentMethods>
+
+            <Controller
+              name="paymentMethod"
+              control={control}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <PaymentMethods>
+                  <PaymentMethodLabel
+                    tabIndex={0}
+                    checked={field.value === 'creditCard'}
+                  >
+                    <input type="radio" {...field} value={'creditCard'} />
+                    <CreditCard size={16} />
+                    Credit Card
+                  </PaymentMethodLabel>
+                  <PaymentMethodLabel
+                    tabIndex={0}
+                    checked={field.value === 'debitCard'}
+                  >
+                    <input type="radio" {...field} value={'debitCard'} />
+                    <Bank size={16} />
+                    Debit Card
+                  </PaymentMethodLabel>
+                  <PaymentMethodLabel
+                    tabIndex={0}
+                    checked={field.value === 'cash'}
+                  >
+                    <input type="radio" {...field} value={'cash'} />
+                    <Money size={16} />
+                    Cash
+                  </PaymentMethodLabel>
+                </PaymentMethods>
+              )}
+            />
           </PaymentFormCard>
         </FormContainer>
         <ConfirmOrderContainer>
