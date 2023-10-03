@@ -26,23 +26,23 @@ import {
   SmallerInput,
 } from './styles'
 
-// type SelectedPaymentMethodType = 'creditCard' | 'debitCard' | 'cash'
+type SelectedPaymentMethodType = 'creditCard' | 'debitCard' | 'cash'
 
-// interface AddressFormData {
-//   zipCode: number
-//   streetAddress: string
-//   streetNumber: number
-//   complement: string
-//   neighborhood: string
-//   city: string
-//   state: string
-//   paymentMethod: SelectedPaymentMethodType
-// }
+interface AddressFormData {
+  zipCode: number
+  streetAddress: string
+  streetNumber: number
+  complement: string
+  neighborhood: string
+  city: string
+  state: string
+  paymentMethod: SelectedPaymentMethodType
+}
 
 export function Checkout() {
-  const { register, control, handleSubmit } = useForm()
+  const { register, control, handleSubmit } = useForm<AddressFormData>()
 
-  function handleConfirmOrder(data: any) {
+  function handleConfirmOrder(data: AddressFormData) {
     console.log(data)
   }
   return (
