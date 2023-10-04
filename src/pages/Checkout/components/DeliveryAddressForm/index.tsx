@@ -1,4 +1,4 @@
-import { Controller, useForm } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import {
   Bank,
   CreditCard,
@@ -6,7 +6,6 @@ import {
   MapPinLine,
   Money,
 } from '@phosphor-icons/react'
-import { AddressFormData } from '../..'
 
 import {
   BaseInput,
@@ -24,8 +23,7 @@ import {
 } from './styles'
 
 export function DeliveryAddressForm() {
-  const { register, control } = useForm<AddressFormData>()
-
+  const { register, control } = useFormContext()
   return (
     <FormContainer>
       <h1>Complete your order</h1>
