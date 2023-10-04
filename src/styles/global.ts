@@ -14,9 +14,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    min-height: 100vh;
+    min-width: 100vw;
     background-color: ${(props) => props.theme.background};
     color: ${(props) => props.theme['base-text']};
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;  
   }
 
   body, input, textarea, button {
