@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { AddressFormData, OrderContext } from '../../contexts/OrderContext'
 import { DeliveryAddressForm } from './components/DeliveryAddressForm'
 import { SelectedCoffees } from './components/SelectedCoffees'
 
@@ -11,29 +12,8 @@ import {
   ConfirmOrderContainer,
 } from './styles'
 
-type SelectedPaymentMethodType = 'creditCard' | 'debitCard' | 'cash'
-
-interface AddressFormData {
-  zipCode: number
-  streetAddress: string
-  streetNumber: number
-  complement: string
-  neighborhood: string
-  city: string
-  state: string
-  paymentMethod: SelectedPaymentMethodType
-}
-
-interface OrderContextData {
-  deliveryAddress: AddressFormData | null
-}
-
-export const OrderContext = createContext({} as OrderContextData)
-
 export function Checkout() {
-  const [deliveryAddress, setDeliveryAddress] =
-    useState<AddressFormData | null>(null)
-
+  const { deliveryAddress, confirmOrder } = useContext(OrderContext)
   const NewOrderForm = useForm<AddressFormData>()
 
   const { handleSubmit } = NewOrderForm
@@ -41,7 +21,7 @@ export function Checkout() {
   const navigate = useNavigate()
 
   function handleConfirmOrder(data: AddressFormData) {
-    setDeliveryAddress(data)
+    confirmOrder(data)
   }
 
   useEffect(() => {
@@ -53,22 +33,19 @@ export function Checkout() {
   return (
     <CheckoutContainer>
       <form onSubmit={handleSubmit(handleConfirmOrder)}>
-        <OrderContext.Provider value={{ deliveryAddress }}>
-          <FormProvider {...NewOrderForm}>
-            <DeliveryAddressForm />
-          </FormProvider>
+        <FormProvider {...NewOrderForm}>
+          <DeliveryAddressForm />
+        </FormProvider>
 
-          <ConfirmOrderContainer>
-            <h2>Selected Coffees</h2>
-            <ConfirmOrderCard>
-              <SelectedCoffees />
+        <ConfirmOrderContainer>
+          <h2>Selected Coffees</h2>
 
-              <ConfirmOrderButton type="submit">
-                Confirm Order
-              </ConfirmOrderButton>
-            </ConfirmOrderCard>
-          </ConfirmOrderContainer>
-        </OrderContext.Provider>
+          <ConfirmOrderCard>
+            <SelectedCoffees />
+
+            <ConfirmOrderButton type="submit">Confirm Order</ConfirmOrderButton>
+          </ConfirmOrderCard>
+        </ConfirmOrderContainer>
       </form>
     </CheckoutContainer>
   )
