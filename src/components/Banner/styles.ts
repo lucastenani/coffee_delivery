@@ -52,26 +52,6 @@ export const DeliveryDetailsContainer = styled.article`
   }
 `
 
-const ICON_COLOR = {
-  yellow: 'primary-hover',
-  yellowDark: 'primary',
-  gray: 'base-subtitle',
-  purple: 'secondary',
-}
-
-interface IconProps {
-  iconcolor: keyof typeof ICON_COLOR
-}
-
-export const IconArea = styled.div<IconProps>`
-  color: ${(props) => props.theme.white};
-  background-color: ${(props) => props.theme[ICON_COLOR[props.iconcolor]]};
-
-  height: 32px;
-  padding: 0.5rem;
-  border-radius: 50%;
-`
-
 export const OrderInfoBox = styled.div`
   display: flex;
   align-items: center;

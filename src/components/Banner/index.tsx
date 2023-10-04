@@ -2,12 +2,13 @@ import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react'
 import coffeeCupImg from '../../assets/coffee-cup-image.png'
 import {
   BannerContainer,
-  IconArea,
   CoffeeCup,
   DeliveryDetailsContainer,
   OrderInfoBox,
   TextBannerContainer,
 } from './styles'
+
+import { IconArea } from '../../layouts/DefaultLayout/styles'
 
 export function Banner() {
   return (
