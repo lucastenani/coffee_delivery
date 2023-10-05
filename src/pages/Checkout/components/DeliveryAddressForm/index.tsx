@@ -24,6 +24,7 @@ import {
 
 export function DeliveryAddressForm() {
   const { register, control } = useFormContext()
+
   return (
     <FormContainer>
       <h1>Complete your order</h1>
@@ -37,6 +38,7 @@ export function DeliveryAddressForm() {
             </span>
           </div>
         </FormCardText>
+
         <FormCardAddress>
           <div>
             <MediumInput
@@ -103,6 +105,7 @@ export function DeliveryAddressForm() {
           </div>
         </FormCardAddress>
       </FormCard>
+
       <PaymentFormCard>
         <FormCardText>
           <CurrencyDollar size={22} />
@@ -123,22 +126,22 @@ export function DeliveryAddressForm() {
             <PaymentMethods>
               <PaymentMethodLabel
                 tabIndex={0}
-                checked={field.value === 'creditCard'}
+                checked={field.value === 'Credit Card'}
               >
-                <input type="radio" {...field} value={'creditCard'} />
+                <input type="radio" {...field} value={'Credit Card'} />
                 <CreditCard size={16} />
                 Credit Card
               </PaymentMethodLabel>
               <PaymentMethodLabel
                 tabIndex={0}
-                checked={field.value === 'debitCard'}
+                checked={field.value === 'Debit Card'}
               >
-                <input type="radio" {...field} value={'debitCard'} />
+                <input type="radio" {...field} value={'Debit Card'} />
                 <Bank size={16} />
                 Debit Card
               </PaymentMethodLabel>
-              <PaymentMethodLabel tabIndex={0} checked={field.value === 'cash'}>
-                <input type="radio" {...field} value={'cash'} />
+              <PaymentMethodLabel tabIndex={0} checked={field.value === 'Cash'}>
+                <input type="radio" {...field} value={'Cash'} />
                 <Money size={16} />
                 Cash
               </PaymentMethodLabel>
