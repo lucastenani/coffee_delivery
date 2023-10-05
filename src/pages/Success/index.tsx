@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { CurrencyDollar, MapPin, Timer } from '@phosphor-icons/react'
 import { OrderContext } from '../../contexts/OrderContext'
 import DeliveryOnTheWay from '../../assets/delivery-on-the-way.png'
@@ -16,6 +17,13 @@ import { IconArea } from '../../layouts/DefaultLayout/styles'
 
 export function Success() {
   const { deliveryAddress } = useContext(OrderContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!deliveryAddress) {
+      navigate('/')
+    }
+  }, [deliveryAddress, navigate])
 
   return (
     <SuccessContainer>
