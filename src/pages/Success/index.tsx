@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { CurrencyDollar, MapPin, Timer } from '@phosphor-icons/react'
+import { OrderContext } from '../../contexts/OrderContext'
 import DeliveryOnTheWay from '../../assets/delivery-on-the-way.png'
 
 import {
@@ -13,6 +15,8 @@ import {
 import { IconArea } from '../../layouts/DefaultLayout/styles'
 
 export function Success() {
+  const { deliveryAddress } = useContext(OrderContext)
+
   return (
     <SuccessContainer>
       <OrderDetailsContainer>
@@ -27,10 +31,15 @@ export function Success() {
               <MapPin size={16} weight="fill" />
             </IconArea>
             <div>
+              <p>Delivery to </p>
+              <span>
+                {deliveryAddress?.streetNumber} {deliveryAddress?.streetAddress}{' '}
+                {deliveryAddress?.complement},
+              </span>
               <p>
-                Delivery to 20 <span>W 34th St.</span>,
+                {deliveryAddress?.city}, {deliveryAddress?.state}{' '}
+                {deliveryAddress?.zipCode}
               </p>
-              <p>New York, NY 10001</p>
             </div>
           </DeliveryInfoBox>
 
@@ -50,7 +59,7 @@ export function Success() {
             </IconArea>
             <div>
               <p>Payment on delivery </p>
-              <span>Credit Card</span>
+              <span>{deliveryAddress?.paymentMethod}</span>
             </div>
           </DeliveryInfoBox>
         </DeliveryInfo>
