@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useState } from 'react'
 
-type SelectedPaymentMethodType = 'creditCard' | 'debitCard' | 'cash'
+type SelectedPaymentMethodType = 'Credit Card' | 'Debit Card' | 'Cash'
 
 export interface AddressFormData {
   zipCode: number
@@ -30,7 +30,6 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
 
   function confirmOrder(data: AddressFormData) {
     setDeliveryAddress(data)
-    console.log(deliveryAddress)
   }
   return (
     <OrderContext.Provider value={{ deliveryAddress, confirmOrder }}>
