@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ShoppingCart } from '@phosphor-icons/react'
 import traditionalCoffee from '../../../../assets/espresso.png'
 
@@ -16,6 +17,20 @@ import {
 } from './styles'
 
 export function CoffeeCatalog() {
+  const [coffeeAmount, setCoffeeAmount] = useState(1)
+
+  function decrement() {
+    if (coffeeAmount > 1) {
+      setCoffeeAmount(coffeeAmount - 1)
+    }
+  }
+
+  function increment() {
+    if (coffeeAmount < 15) {
+      setCoffeeAmount(coffeeAmount + 1)
+    }
+  }
+
   return (
     <CoffeeCatalogContainer>
       <h3>Our Coffees</h3>
@@ -38,9 +53,15 @@ export function CoffeeCatalog() {
             </CoffeePrice>
 
             <CoffeeAmount>
-              <button id="decrement"> - </button>
-              <input type="number" min={1} max={15} value={1} readOnly />
-              <button id="increment"> + </button>
+              <button onClick={decrement}>-</button>
+              <input
+                type="number"
+                min={1}
+                max={15}
+                value={coffeeAmount}
+                readOnly
+              />
+              <button onClick={increment}>+</button>
             </CoffeeAmount>
 
             <AddToCart>

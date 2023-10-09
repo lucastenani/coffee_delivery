@@ -118,7 +118,6 @@ export const CoffeeAmount = styled.div`
   button {
     color: ${(props) => props.theme['secondary-hover']};
     font-size: 1.3rem;
-    line-height: 0;
 
     cursor: pointer;
   }
