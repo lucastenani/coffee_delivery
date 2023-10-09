@@ -1,5 +1,5 @@
 import { Banner } from './components/Banner'
-import { CoffeeCatalog } from './components/CoffeeCatalog'
+import { OurCoffees } from './components/CoffeeCatalog'
 
 import { HomeContainer } from './styles'
 
@@ -7,7 +7,7 @@ export function Home() {
   return (
     <HomeContainer>
       <Banner />
-      <CoffeeCatalog />
+      <OurCoffees />
     </HomeContainer>
   )
 }
