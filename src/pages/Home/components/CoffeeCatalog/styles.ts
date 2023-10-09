@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const CoffeeCatalogContainer = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 3.375rem;
+  gap: 4rem;
 
   h3 {
     color: ${(props) => props.theme['base-subtitle']};
@@ -17,7 +17,7 @@ export const CoffeeMenu = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 2.5rem 2rem;
+  gap: 3.5rem 2rem;
 
   @media (max-width: 500px) {
     flex-direction: column;

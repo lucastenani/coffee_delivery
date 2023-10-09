@@ -1,26 +1,28 @@
 import styled from 'styled-components'
 
 export const CoffeeItemContainer = styled.article`
-  flex: 0 0 calc(25% - 2rem);
-  max-width: 13rem;
+  width: 15rem;
+  height: 19.375rem;
+
+  border-radius: 6px 36px;
+  background: ${(props) => props.theme['base-card']};
+  padding: 0 1.5rem 1.5rem;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 768px) {
-    flex: 0 0 calc(33.3% - 2rem);
-  }
-
   @media (max-width: 525px) {
-    flex: 1;
+    max-width: none;
+    width: 100%;
   }
 `
 
 export const CoffeeImg = styled.img`
   max-width: 7.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  margin-top: -2.5rem;
 `
 
 export const CoffeeTags = styled.div`
