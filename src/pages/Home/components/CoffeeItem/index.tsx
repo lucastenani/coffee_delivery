@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ShoppingCart } from '@phosphor-icons/react'
+import { CoffeeListProps } from '../CoffeeCatalog'
 
 import {
   AddToCart,
@@ -9,12 +10,18 @@ import {
   CoffeeImg,
   CoffeeItemContainer,
   CoffeePrice,
-  CoffeeTag,
+  CoffeeTags,
   CoffeeTitle,
 } from './styles'
 
-export function CoffeeItem() {
+interface CoffeeItemProps {
+  coffeeInfo: CoffeeListProps
+}
+
+export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
   const [coffeeAmount, setCoffeeAmount] = useState(1)
+
+  const { description, imagePath, name, price, tags } = coffeeInfo
 
   function decrement() {
     if (coffeeAmount > 1) {
@@ -30,21 +37,24 @@ export function CoffeeItem() {
 
   return (
     <CoffeeItemContainer>
-      <CoffeeImg src="" alt="" />
-      <CoffeeTag>TRADITIONAL</CoffeeTag>
-      <CoffeeTitle>Espresso</CoffeeTitle>
-      <CoffeeDescription>
-        The traditional coffee made with hot water and ground beans.
-      </CoffeeDescription>
+      <CoffeeImg src={imagePath} alt={`${name} coffee image`} />
+
+      <CoffeeTags>
+        {tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </CoffeeTags>
+
+      <CoffeeTitle>{name}</CoffeeTitle>
+
+      <CoffeeDescription>{description}</CoffeeDescription>
+
       <CoffeeBuy>
         <CoffeePrice>
-          <span>$</span> 1.90
+          <span>$</span> {price}
         </CoffeePrice>
 
         <CoffeeAmount>
-          <button id="decrement"> - </button>
-          <input type="number" min={1} max={15} value={1} readOnly />
-          <button id="increment"> + </button>
           <button onClick={decrement}>-</button>
           <input type="number" min={1} max={15} value={coffeeAmount} readOnly />
           <button onClick={increment}>+</button>

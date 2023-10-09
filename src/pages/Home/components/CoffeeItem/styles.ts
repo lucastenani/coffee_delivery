@@ -23,17 +23,26 @@ export const CoffeeImg = styled.img`
   margin-bottom: 0.75rem;
 `
 
-export const CoffeeTag = styled.span`
-  background-color: ${(props) => props.theme['yellow-light']};
-  border-radius: 100px;
-  padding: 0.25rem 0.5rem;
+export const CoffeeTags = styled.div`
   margin-bottom: 1rem;
 
-  font-size: 0.625rem;
-  font-weight: 700;
-  line-height: 130%;
-  text-transform: uppercase;
-  color: ${(props) => props.theme['primary-hover']};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+
+  span {
+    background-color: ${(props) => props.theme['yellow-light']};
+    border-radius: 100px;
+    padding: 0.25rem 0.5rem;
+
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 130%;
+    text-transform: uppercase;
+    color: ${(props) => props.theme['primary-hover']};
+  }
 `
 
 export const CoffeeTitle = styled.p`
