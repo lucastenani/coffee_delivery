@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ShoppingCart } from '@phosphor-icons/react'
-import { CoffeeListProps } from '../CoffeeCatalog'
+import { CoffeeListProps } from '../../../../contexts/selectedCoffeesContext'
 
 import {
   AddToCart,
@@ -35,6 +35,10 @@ export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
     }
   }
 
+  function handleAddToCart() {
+    console.log(`${coffeeAmount} ${name} added`)
+  }
+
   return (
     <CoffeeItemContainer>
       <CoffeeImg src={imagePath} alt={`${name} coffee image`} />
@@ -56,12 +60,12 @@ export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
 
         <CoffeeAmount>
           <button onClick={decrement}>-</button>
-          <input type="number" min={1} max={15} value={coffeeAmount} readOnly />
+          <span>{coffeeAmount}</span>
           <button onClick={increment}>+</button>
         </CoffeeAmount>
 
-        <AddToCart>
-          <ShoppingCart weight="fill" size={22} />
+        <AddToCart type="submit">
+          <ShoppingCart weight="fill" size={22} onClick={handleAddToCart} />
         </AddToCart>
       </CoffeeBuy>
     </CoffeeItemContainer>

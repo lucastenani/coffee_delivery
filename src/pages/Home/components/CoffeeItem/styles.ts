@@ -85,6 +85,7 @@ export const CoffeePrice = styled.p`
 `
 
 export const CoffeeAmount = styled.div`
+  width: 4.5rem;
   background-color: ${(props) => props.theme['base-button']};
   padding: 0.5rem;
   border: 0;
@@ -92,11 +93,10 @@ export const CoffeeAmount = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 0.25rem;
 
-  button,
-  input {
+  button {
     background-color: transparent;
     border: 0;
   }
@@ -112,18 +112,10 @@ export const CoffeeAmount = styled.div`
     }
   }
 
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  input {
+  span {
     color: ${(props) => props.theme['base-title']};
     text-align: center;
     cursor: default;
-
-    -moz-appearance: textfield;
   }
 `
 
