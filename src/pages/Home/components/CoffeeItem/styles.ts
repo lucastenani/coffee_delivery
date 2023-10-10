@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const CoffeeItemContainer = styled.article`
-  width: 15rem;
+  width: 16rem;
   height: 19.375rem;
 
   border-radius: 6px 36px;
@@ -14,8 +14,7 @@ export const CoffeeItemContainer = styled.article`
   justify-content: center;
 
   @media (max-width: 525px) {
-    max-width: none;
-    width: 100%;
+    width: 80%;
   }
 `
 
@@ -103,10 +102,14 @@ export const CoffeeAmount = styled.div`
   }
 
   button {
-    color: ${(props) => props.theme['secondary-hover']};
+    color: ${(props) => props.theme.secondary};
     font-size: 1.3rem;
 
     cursor: pointer;
+
+    &:hover {
+      color: ${(props) => props.theme['secondary-hover']};
+    }
   }
 
   input::-webkit-outer-spin-button,
@@ -118,6 +121,7 @@ export const CoffeeAmount = styled.div`
   input {
     color: ${(props) => props.theme['base-title']};
     text-align: center;
+    cursor: default;
 
     -moz-appearance: textfield;
   }
@@ -136,5 +140,9 @@ export const AddToCart = styled.button`
 
   svg {
     color: ${(props) => props.theme.white};
+  }
+
+  &:hover {
+    background-color: ${(props) => props.theme.secondary};
   }
 `

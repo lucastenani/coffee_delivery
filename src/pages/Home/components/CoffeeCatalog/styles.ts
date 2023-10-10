@@ -19,7 +19,7 @@ export const CoffeeMenu = styled.div`
   align-items: center;
   gap: 3.5rem 2rem;
 
-  @media (max-width: 500px) {
-    flex-direction: column;
+  @media (max-width: 525px) {
+    justify-content: center;
   }
 `
