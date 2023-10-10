@@ -1,25 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { CoffeeItem } from '../CoffeeItem'
 import { CoffeeCatalogContainer, CoffeeMenu } from './styles'
-
-export interface CoffeeListProps {
-  id: number
-  imagePath: string
-  tags: string[]
-  name: string
-  description: string
-  price: number
-}
+import { SelectedCoffeesContext } from '../../../../contexts/selectedCoffeesContext'
 
 export function OurCoffees() {
-  const [coffeeList, setCoffeeList] = useState<CoffeeListProps[]>([])
-
-  useEffect(() => {
-    fetch('/coffeeData.json')
-      .then((response) => response.json())
-      .then((data) => setCoffeeList(data))
-  }, [])
-
+  const { coffeeList } = useContext(SelectedCoffeesContext)
   return (
     <CoffeeCatalogContainer>
       <h3>Our Coffees</h3>
