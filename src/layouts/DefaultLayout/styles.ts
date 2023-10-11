@@ -25,7 +25,7 @@ export const IconArea = styled.div<IconProps>`
   color: ${(props) => props.theme.white};
   background-color: ${(props) => props.theme[ICON_COLOR[props.iconcolor]]};
 
-  height: 32px;
+  height: 2rem;
   padding: 0.5rem;
   border-radius: 50%;
 `
