@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
-import { SelectedCoffeesContextProvider } from './contexts/selectedCoffeesContext'
+import { CoffeesContextProvider } from './contexts/CoffeesContext'
 import { OrderContextProvider } from './contexts/OrderContext'
 import { Router } from './Router'
 
@@ -11,11 +11,11 @@ export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <SelectedCoffeesContextProvider>
+        <CoffeesContextProvider>
           <OrderContextProvider>
             <Router />
           </OrderContextProvider>
-        </SelectedCoffeesContextProvider>
+        </CoffeesContextProvider>
       </BrowserRouter>
 
       <GlobalStyle />

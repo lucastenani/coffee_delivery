@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { CoffeeItem } from '../CoffeeItem'
 import { CoffeeCatalogContainer, CoffeeMenu } from './styles'
-import { SelectedCoffeesContext } from '../../../../contexts/selectedCoffeesContext'
+import { CoffeesContext } from '../../../../contexts/CoffeesContext'
 
 export function OurCoffees() {
-  const { coffeeList } = useContext(SelectedCoffeesContext)
+  const { coffeeList } = useContext(CoffeesContext)
   return (
     <CoffeeCatalogContainer>
       <h3>Our Coffees</h3>

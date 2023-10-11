@@ -3,8 +3,8 @@ import { ShoppingCart } from '@phosphor-icons/react'
 import {
   CoffeeCartProps,
   CoffeeListProps,
-  SelectedCoffeesContext,
-} from '../../../../contexts/selectedCoffeesContext'
+  CoffeesContext,
+} from '../../../../contexts/CoffeesContext'
 
 import {
   AddToCart,
@@ -24,7 +24,7 @@ interface CoffeeItemProps {
 
 export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
   const [coffeeAmount, setCoffeeAmount] = useState(1)
-  const { addToCart } = useContext(SelectedCoffeesContext)
+  const { addToCart } = useContext(CoffeesContext)
 
   const { description, imagePath, name, price, tags } = coffeeInfo
 
@@ -42,7 +42,7 @@ export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
 
   function handleAddToCart() {
     const selectedCoffee: CoffeeCartProps = {
-      coffe: coffeeInfo,
+      coffee: coffeeInfo,
       amount: coffeeAmount,
     }
 

@@ -11,32 +11,34 @@ export interface CoffeeListProps {
 }
 
 export interface CoffeeCartProps {
-  coffe: CoffeeListProps
+  coffee: CoffeeListProps
   amount: number
 }
 
-interface SelectedCoffeesContextData {
+interface CoffeesContextData {
   coffeeList: CoffeeListProps[]
   coffeeCart: CoffeeCartProps[]
   addToCart: (selectedCoffee: CoffeeCartProps) => void
 }
 
-interface SelectedCoffeesContextProviderProps {
+interface CoffeesContextProviderProps {
   children: ReactNode
 }
 
-export const SelectedCoffeesContext = createContext(
-  {} as SelectedCoffeesContextData,
-)
+export const CoffeesContext = createContext({} as CoffeesContextData)
 
-export function SelectedCoffeesContextProvider({
+export function CoffeesContextProvider({
   children,
-}: SelectedCoffeesContextProviderProps) {
+}: CoffeesContextProviderProps) {
   const [coffeeList, setCoffeeList] = useState<CoffeeListProps[]>([])
   const [coffeeCart, setCoffeeCart] = useState<CoffeeCartProps[]>([])
 
   function addToCart(selectedCoffee: CoffeeCartProps) {
+    // const id = selectedCoffee.coffee.id
+    // const isCoffeeInCart = coffeeCart.find((coffee) => coffee.coffee.id === id)
+
     setCoffeeCart((state) => [...state, selectedCoffee])
+    console.log(coffeeCart)
   }
 
   useEffect(() => {
@@ -46,10 +48,8 @@ export function SelectedCoffeesContextProvider({
   }, [])
 
   return (
-    <SelectedCoffeesContext.Provider
-      value={{ coffeeList, addToCart, coffeeCart }}
-    >
+    <CoffeesContext.Provider value={{ coffeeList, addToCart, coffeeCart }}>
       {children}
-    </SelectedCoffeesContext.Provider>
+    </CoffeesContext.Provider>
   )
 }
