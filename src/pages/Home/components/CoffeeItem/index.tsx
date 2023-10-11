@@ -1,6 +1,10 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { ShoppingCart } from '@phosphor-icons/react'
-import { CoffeeListProps } from '../../../../contexts/selectedCoffeesContext'
+import {
+  CoffeeCartProps,
+  CoffeeListProps,
+  SelectedCoffeesContext,
+} from '../../../../contexts/selectedCoffeesContext'
 
 import {
   AddToCart,
@@ -20,6 +24,7 @@ interface CoffeeItemProps {
 
 export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
   const [coffeeAmount, setCoffeeAmount] = useState(1)
+  const { addToCart } = useContext(SelectedCoffeesContext)
 
   const { description, imagePath, name, price, tags } = coffeeInfo
 
@@ -36,7 +41,12 @@ export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
   }
 
   function handleAddToCart() {
-    console.log(`${coffeeAmount} ${name} added`)
+    const selectedCoffee: CoffeeCartProps = {
+      coffe: coffeeInfo,
+      amount: coffeeAmount,
+    }
+
+    addToCart(selectedCoffee)
   }
 
   return (
