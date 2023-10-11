@@ -11,12 +11,17 @@ import {
   ConfirmOrderCard,
   ConfirmOrderContainer,
 } from './styles'
+import { CoffeesContext } from '../../contexts/CoffeesContext'
 
 export function Checkout() {
   const { deliveryAddress, confirmOrder } = useContext(OrderContext)
+  const { coffeeCart } = useContext(CoffeesContext)
+
   const NewOrderForm = useForm<AddressFormData>()
 
   const { handleSubmit } = NewOrderForm
+
+  const isItemInCart = coffeeCart.length > 0
 
   const navigate = useNavigate()
 
@@ -43,7 +48,9 @@ export function Checkout() {
           <ConfirmOrderCard>
             <SelectedCoffees />
 
-            <ConfirmOrderButton type="submit">Confirm Order</ConfirmOrderButton>
+            <ConfirmOrderButton type="submit" disabled={!isItemInCart}>
+              Confirm Order
+            </ConfirmOrderButton>
           </ConfirmOrderCard>
         </ConfirmOrderContainer>
       </form>
