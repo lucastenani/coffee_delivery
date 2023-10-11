@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
 import { MapPin, ShoppingCartSimple } from '@phosphor-icons/react'
 import CoffeeLogo from '../../assets/logo.svg'
 import { CoffeesContext } from '../../contexts/CoffeesContext'
@@ -9,11 +10,9 @@ import {
   HeaderContainer,
   LocationContainer,
 } from './styles'
-import { NavLink } from 'react-router-dom'
 
 export function Header() {
-  const { coffeeCart } = useContext(CoffeesContext)
-  const amountOfCartItems = coffeeCart.length
+  const { coffeeCartAmount } = useContext(CoffeesContext)
 
   return (
     <HeaderContainer>
@@ -29,8 +28,8 @@ export function Header() {
 
         <CartContainer to="/checkout" title="My Cart">
           <ShoppingCartSimple size={22} weight="fill" />
-          {amountOfCartItems > 0 ? (
-            <AmountOfItemsCart>{amountOfCartItems}</AmountOfItemsCart>
+          {coffeeCartAmount > 0 ? (
+            <AmountOfItemsCart>{coffeeCartAmount}</AmountOfItemsCart>
           ) : (
             ''
           )}

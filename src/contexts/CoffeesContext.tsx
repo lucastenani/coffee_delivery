@@ -18,6 +18,7 @@ export interface CoffeeCartProps {
 interface CoffeesContextData {
   coffeeList: CoffeeListProps[]
   coffeeCart: CoffeeCartProps[]
+  coffeeCartAmount: number
   addToCart: (selectedCoffee: CoffeeCartProps) => void
 }
 
@@ -38,8 +39,9 @@ export function CoffeesContextProvider({
     // const isCoffeeInCart = coffeeCart.find((coffee) => coffee.coffee.id === id)
 
     setCoffeeCart((state) => [...state, selectedCoffee])
-    console.log(coffeeCart)
   }
+
+  const coffeeCartAmount = coffeeCart.length
 
   useEffect(() => {
     fetch('/coffeeData.json')
@@ -48,7 +50,9 @@ export function CoffeesContextProvider({
   }, [])
 
   return (
-    <CoffeesContext.Provider value={{ coffeeList, addToCart, coffeeCart }}>
+    <CoffeesContext.Provider
+      value={{ coffeeList, addToCart, coffeeCart, coffeeCartAmount }}
+    >
       {children}
     </CoffeesContext.Provider>
   )

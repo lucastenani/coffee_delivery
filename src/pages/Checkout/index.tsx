@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { CoffeesContext } from '../../contexts/CoffeesContext'
 import { AddressFormData, OrderContext } from '../../contexts/OrderContext'
 import { DeliveryAddressForm } from './components/DeliveryAddressForm'
 import { SelectedCoffees } from './components/SelectedCoffees'
@@ -11,17 +12,16 @@ import {
   ConfirmOrderCard,
   ConfirmOrderContainer,
 } from './styles'
-import { CoffeesContext } from '../../contexts/CoffeesContext'
 
 export function Checkout() {
   const { deliveryAddress, confirmOrder } = useContext(OrderContext)
-  const { coffeeCart } = useContext(CoffeesContext)
+  const { coffeeCartAmount } = useContext(CoffeesContext)
 
   const NewOrderForm = useForm<AddressFormData>()
 
   const { handleSubmit } = NewOrderForm
 
-  const isItemInCart = coffeeCart.length > 0
+  const isItemInCart = coffeeCartAmount > 0
 
   const navigate = useNavigate()
 
