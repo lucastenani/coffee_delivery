@@ -13,6 +13,7 @@ import {
 
 export function Header() {
   const { coffeeCartAmount } = useContext(CoffeesContext)
+  const isItemInCart = coffeeCartAmount > 0
 
   return (
     <HeaderContainer>
@@ -28,7 +29,7 @@ export function Header() {
 
         <CartContainer to="/checkout" title="My Cart">
           <ShoppingCartSimple size={22} weight="fill" />
-          {coffeeCartAmount > 0 ? (
+          {isItemInCart ? (
             <AmountOfItemsCart>{coffeeCartAmount}</AmountOfItemsCart>
           ) : (
             ''
