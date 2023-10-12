@@ -61,9 +61,6 @@ export function CoffeesContextProvider({
       .then((response) => response.json())
       .then((data) => setCoffeeList(data))
   }, [])
-  useEffect(() => {
-    console.log(coffeeCart)
-  }, [coffeeCart])
 
   return (
     <CoffeesContext.Provider
