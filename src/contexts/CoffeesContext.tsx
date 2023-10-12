@@ -35,10 +35,23 @@ export function CoffeesContextProvider({
   const [coffeeCart, setCoffeeCart] = useState<CoffeeCartProps[]>([])
 
   function addToCart(selectedCoffee: CoffeeCartProps) {
-    // const id = selectedCoffee.coffee.id
-    // const isCoffeeInCart = coffeeCart.find((coffee) => coffee.coffee.id === id)
+    const id = selectedCoffee.coffee.id
+    const isCoffeeInCart = coffeeCart.find((coffee) => coffee.coffee.id === id)
 
-    setCoffeeCart((state) => [...state, selectedCoffee])
+    if (!isCoffeeInCart) {
+      setCoffeeCart((state) => [...state, selectedCoffee])
+    } else {
+      setCoffeeCart(
+        coffeeCart.map((coffee) => {
+          if (coffee.coffee.id === id) {
+            const newAmount = coffee.amount + selectedCoffee.amount
+            return { ...coffee, amount: newAmount }
+          } else {
+            return coffee
+          }
+        }),
+      )
+    }
   }
 
   const coffeeCartAmount = coffeeCart.length
@@ -48,6 +61,9 @@ export function CoffeesContextProvider({
       .then((response) => response.json())
       .then((data) => setCoffeeList(data))
   }, [])
+  useEffect(() => {
+    console.log(coffeeCart)
+  }, [coffeeCart])
 
   return (
     <CoffeesContext.Provider
