@@ -26,17 +26,15 @@ export function CartItem({ coffeeInfo }: CartItemProps) {
   function decrement() {
     event?.preventDefault()
 
-    if (coffeeAmount > 1) {
-      setCoffeeAmount(coffeeAmount - 1)
-    } else {
-      removeFromCart(coffee.id)
-    }
+    coffeeAmount > 1
+      ? setCoffeeAmount((state) => state - 1)
+      : removeFromCart(coffee.id)
   }
 
   function increment() {
     event?.preventDefault()
 
-    setCoffeeAmount(coffeeAmount + 1)
+    setCoffeeAmount((state) => state + 1)
   }
 
   function handleRemoveFromCart() {

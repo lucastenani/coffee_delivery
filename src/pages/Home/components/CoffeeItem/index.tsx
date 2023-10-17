@@ -31,13 +31,13 @@ export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
 
   function decrement() {
     if (coffeeAmount > 1) {
-      setCoffeeAmount(coffeeAmount - 1)
+      setCoffeeAmount((state) => state - 1)
     }
   }
 
   function increment() {
     if (coffeeAmount < 15) {
-      setCoffeeAmount(coffeeAmount + 1)
+      setCoffeeAmount((state) => state + 1)
     }
   }
 
