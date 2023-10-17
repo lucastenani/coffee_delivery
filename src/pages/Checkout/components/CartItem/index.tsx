@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Trash } from '@phosphor-icons/react'
-import { CoffeeCartProps } from '../../../../contexts/CoffeesContext'
+import {
+  CoffeeCartProps,
+  CoffeesContext,
+} from '../../../../contexts/CoffeesContext'
 
 import { CoffeeAmount } from '../../../../layouts/DefaultLayout/styles'
 import {
@@ -16,17 +19,20 @@ interface CartItemProps {
 }
 
 export function CartItem({ coffeeInfo }: CartItemProps) {
-  const { amount, coffee } = coffeeInfo
+  const { currencyFormatter } = useContext(CoffeesContext)
+  const { amount, coffee, totalPrice } = coffeeInfo
   const [coffeeAmount, setCoffeeAmount] = useState(amount)
 
   function decrement() {
     if (coffeeAmount > 1) {
+      event?.preventDefault()
       setCoffeeAmount(coffeeAmount - 1)
     }
   }
 
   function increment() {
     if (coffeeAmount < 15) {
+      event?.preventDefault()
       setCoffeeAmount(coffeeAmount + 1)
     }
   }
@@ -49,7 +55,7 @@ export function CartItem({ coffeeInfo }: CartItemProps) {
         </div>
       </CartItemDetails>
 
-      <CartItemPrice>$ {coffee.price}</CartItemPrice>
+      <CartItemPrice>{currencyFormatter(totalPrice)}</CartItemPrice>
     </CartItemContainer>
   )
 }

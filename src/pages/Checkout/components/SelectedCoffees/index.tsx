@@ -14,7 +14,13 @@ import {
 import { CartItem } from '../CartItem'
 
 export function SelectedCoffees() {
-  const { coffeeCart, coffeeCartAmount } = useContext(CoffeesContext)
+  const {
+    coffeeCart,
+    coffeeCartAmount,
+    totalItemsPrice,
+    deliveryPrice,
+    totalOrderPrice,
+  } = useContext(CoffeesContext)
 
   const isItemInCart = coffeeCartAmount > 0
 
@@ -33,15 +39,15 @@ export function SelectedCoffees() {
           <TotalPriceContainer>
             <PriceDetails>
               <p>Total Items</p>
-              <span>$ 29.70</span>
+              <span>{totalItemsPrice}</span>
             </PriceDetails>
             <PriceDetails>
               <p>Delivery</p>
-              <span>$ 3.50</span>
+              <span>{deliveryPrice}</span>
             </PriceDetails>
             <TotalPriceSum>
               <p>Total</p>
-              <p>$ 33.20</p>
+              <p>{totalOrderPrice}</p>
             </TotalPriceSum>
           </TotalPriceContainer>
         </CartWithItems>

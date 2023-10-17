@@ -45,6 +45,7 @@ export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
     const selectedCoffee: CoffeeCartProps = {
       coffee: coffeeInfo,
       amount: coffeeAmount,
+      totalPrice: coffeeInfo.price * coffeeAmount,
     }
 
     addToCart(selectedCoffee)
