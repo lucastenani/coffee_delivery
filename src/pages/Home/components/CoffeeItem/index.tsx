@@ -76,8 +76,8 @@ export function CoffeeItem({ coffeeInfo }: CoffeeItemProps) {
           <button onClick={increment}>+</button>
         </CoffeeAmount>
 
-        <AddToCart type="submit">
-          <ShoppingCart weight="fill" size={22} onClick={handleAddToCart} />
+        <AddToCart onClick={handleAddToCart}>
+          <ShoppingCart weight="fill" size={22} />
         </AddToCart>
       </CoffeeBuy>
     </CoffeeItemContainer>
