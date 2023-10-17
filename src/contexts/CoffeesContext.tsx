@@ -24,6 +24,7 @@ interface CoffeesContextData {
   deliveryPrice: string
   totalOrderPrice: string
   addToCart: (selectedCoffee: CoffeeCartProps) => void
+  removeFromCart: (id: number) => void
   currencyFormatter: (value: number) => string
 }
 
@@ -59,6 +60,10 @@ export function CoffeesContextProvider({
         }),
       )
     }
+  }
+
+  function removeFromCart(id: number) {
+    setCoffeeCart((state) => state.filter((coffee) => coffee.coffee.id !== id))
   }
 
   function currencyFormatter(value: number) {
@@ -98,6 +103,7 @@ export function CoffeesContextProvider({
         deliveryPrice,
         totalOrderPrice,
         currencyFormatter,
+        removeFromCart,
       }}
     >
       {children}

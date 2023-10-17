@@ -19,23 +19,32 @@ interface CartItemProps {
 }
 
 export function CartItem({ coffeeInfo }: CartItemProps) {
-  const { currencyFormatter } = useContext(CoffeesContext)
+  const { currencyFormatter, removeFromCart } = useContext(CoffeesContext)
   const { amount, coffee, totalPrice } = coffeeInfo
   const [coffeeAmount, setCoffeeAmount] = useState(amount)
 
   function decrement() {
+    event?.preventDefault()
+
     if (coffeeAmount > 1) {
-      event?.preventDefault()
       setCoffeeAmount(coffeeAmount - 1)
+    } else {
+      removeFromCart(coffee.id)
     }
   }
 
   function increment() {
-    if (coffeeAmount < 15) {
-      event?.preventDefault()
-      setCoffeeAmount(coffeeAmount + 1)
-    }
+    event?.preventDefault()
+
+    setCoffeeAmount(coffeeAmount + 1)
   }
+
+  function handleRemoveFromCart() {
+    event?.preventDefault()
+
+    removeFromCart(coffee.id)
+  }
+
   return (
     <CartItemContainer>
       <CartItemImg src={coffee.imagePath} alt={`${coffee.name} coffee image`} />
@@ -49,7 +58,7 @@ export function CartItem({ coffeeInfo }: CartItemProps) {
             <button onClick={increment}>+</button>
           </CoffeeAmount>
 
-          <DeleItemButton>
+          <DeleItemButton onClick={handleRemoveFromCart}>
             <Trash size={16} /> <span>Remove</span>
           </DeleItemButton>
         </div>
