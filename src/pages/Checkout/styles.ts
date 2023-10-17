@@ -44,7 +44,7 @@ export const ConfirmOrderContainer = styled.section`
 
 export const ConfirmOrderCard = styled(baseCard)`
   border-radius: 6px 44px;
-  gap: 2rem;
+  gap: 1.5rem;
 `
 
 export const ConfirmOrderButton = styled.button`
