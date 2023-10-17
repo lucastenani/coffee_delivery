@@ -6,9 +6,10 @@ import {
   CoffeesContext,
 } from '../../../../contexts/CoffeesContext'
 
+import { CoffeeAmount } from '../../../../layouts/DefaultLayout/styles'
+
 import {
   AddToCart,
-  CoffeeAmount,
   CoffeeBuy,
   CoffeeDescription,
   CoffeeImg,

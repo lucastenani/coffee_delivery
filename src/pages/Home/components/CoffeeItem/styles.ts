@@ -84,41 +84,6 @@ export const CoffeePrice = styled.p`
   }
 `
 
-export const CoffeeAmount = styled.div`
-  width: 4.5rem;
-  background-color: ${(props) => props.theme['base-button']};
-  padding: 0.5rem;
-  border: 0;
-  border-radius: 8px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.25rem;
-
-  button {
-    background-color: transparent;
-    border: 0;
-  }
-
-  button {
-    color: ${(props) => props.theme.secondary};
-    font-size: 1.3rem;
-
-    cursor: pointer;
-
-    &:hover {
-      color: ${(props) => props.theme['secondary-hover']};
-    }
-  }
-
-  span {
-    color: ${(props) => props.theme['base-title']};
-    text-align: center;
-    cursor: default;
-  }
-`
-
 export const AddToCart = styled.button`
   background-color: ${(props) => props.theme['secondary-hover']};
   padding: 0.5rem;
