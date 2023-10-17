@@ -25,6 +25,8 @@ interface CoffeesContextData {
   totalOrderPrice: string
   addToCart: (selectedCoffee: CoffeeCartProps) => void
   removeFromCart: (id: number) => void
+  decrementCoffeeAmount: (id: number) => void
+  incrementCoffeeAmount: (id: number) => void
   currencyFormatter: (value: number) => string
 }
 
@@ -66,6 +68,34 @@ export function CoffeesContextProvider({
     setCoffeeCart((state) => state.filter((coffee) => coffee.coffee.id !== id))
   }
 
+  function decrementCoffeeAmount(id: number) {
+    setCoffeeCart((state) => {
+      return state
+        .map((coffee) => {
+          if (coffee.coffee.id === id) {
+            const newAmount = coffee.amount - 1
+            return { ...coffee, amount: newAmount }
+          }
+          return coffee
+        })
+        .filter((coffee) => coffee.amount > 0)
+    })
+  }
+
+  function incrementCoffeeAmount(id: number) {
+    setCoffeeCart(
+      coffeeCart.map((coffee) => {
+        if (coffee.coffee.id === id) {
+          const newAmount = coffee.amount + 1
+
+          return { ...coffee, amount: newAmount }
+        } else {
+          return coffee
+        }
+      }),
+    )
+  }
+
   function currencyFormatter(value: number) {
     return new Intl.NumberFormat('USD', {
       style: 'currency',
@@ -104,6 +134,8 @@ export function CoffeesContextProvider({
         totalOrderPrice,
         currencyFormatter,
         removeFromCart,
+        decrementCoffeeAmount,
+        incrementCoffeeAmount,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Trash } from '@phosphor-icons/react'
 import {
   CoffeeCartProps,
@@ -19,22 +19,25 @@ interface CartItemProps {
 }
 
 export function CartItem({ coffeeInfo }: CartItemProps) {
-  const { currencyFormatter, removeFromCart } = useContext(CoffeesContext)
-  const { amount, coffee, totalPrice } = coffeeInfo
-  const [coffeeAmount, setCoffeeAmount] = useState(amount)
+  const {
+    currencyFormatter,
+    removeFromCart,
+    decrementCoffeeAmount,
+    incrementCoffeeAmount,
+  } = useContext(CoffeesContext)
 
-  function decrement() {
+  const { coffee, totalPrice, amount } = coffeeInfo
+
+  function handleDecrementAmount() {
     event?.preventDefault()
 
-    coffeeAmount > 1
-      ? setCoffeeAmount((state) => state - 1)
-      : removeFromCart(coffee.id)
+    decrementCoffeeAmount(coffee.id)
   }
 
-  function increment() {
+  function handleIncrementAmount() {
     event?.preventDefault()
 
-    setCoffeeAmount((state) => state + 1)
+    incrementCoffeeAmount(coffee.id)
   }
 
   function handleRemoveFromCart() {
@@ -51,9 +54,9 @@ export function CartItem({ coffeeInfo }: CartItemProps) {
         <p>{coffee.name}</p>
         <div>
           <CoffeeAmount>
-            <button onClick={decrement}>-</button>
-            <span>{coffeeAmount}</span>
-            <button onClick={increment}>+</button>
+            <button onClick={handleDecrementAmount}>-</button>
+            <span>{amount}</span>
+            <button onClick={handleIncrementAmount}>+</button>
           </CoffeeAmount>
 
           <DeleItemButton onClick={handleRemoveFromCart}>
