@@ -74,9 +74,12 @@ export function CoffeesContextProvider({
         .map((coffee) => {
           if (coffee.coffee.id === id) {
             const newAmount = coffee.amount - 1
-            return { ...coffee, amount: newAmount }
+            const newTotalPrice = coffee.totalPrice - coffee.coffee.price
+
+            return { ...coffee, amount: newAmount, totalPrice: newTotalPrice }
+          } else {
+            return coffee
           }
-          return coffee
         })
         .filter((coffee) => coffee.amount > 0)
     })
@@ -87,8 +90,9 @@ export function CoffeesContextProvider({
       coffeeCart.map((coffee) => {
         if (coffee.coffee.id === id) {
           const newAmount = coffee.amount + 1
+          const newTotalPrice = coffee.totalPrice + coffee.coffee.price
 
-          return { ...coffee, amount: newAmount }
+          return { ...coffee, amount: newAmount, totalPrice: newTotalPrice }
         } else {
           return coffee
         }
