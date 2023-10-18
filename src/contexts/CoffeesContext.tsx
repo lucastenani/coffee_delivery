@@ -61,9 +61,7 @@ export function CoffeesContextProvider({
       '@coffee-delivery:coffee-cart',
     )
 
-    if (storedStateAsJSON) {
-      return JSON.parse(storedStateAsJSON)
-    }
+    return storedStateAsJSON ? JSON.parse(storedStateAsJSON) : []
   })
 
   function addToCart(selectedCoffee: CoffeeCartProps) {
