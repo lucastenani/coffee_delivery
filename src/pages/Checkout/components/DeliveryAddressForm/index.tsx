@@ -6,6 +6,7 @@ import {
   MapPinLine,
   Money,
 } from '@phosphor-icons/react'
+import { SelectedPaymentMethodType } from '../../../../contexts/OrderContext'
 
 import {
   BaseInput,
@@ -23,7 +24,16 @@ import {
 } from './styles'
 
 export function DeliveryAddressForm() {
-  const { register, control } = useFormContext()
+  const { register, control, setValue } = useFormContext()
+
+  function handleKeyDown(
+    event: KeyboardEvent,
+    method: SelectedPaymentMethodType,
+  ) {
+    if (event.key === 'Enter') {
+      setValue('paymentMethod', method)
+    }
+  }
 
   return (
     <FormContainer>
@@ -127,6 +137,7 @@ export function DeliveryAddressForm() {
               <PaymentMethodLabel
                 tabIndex={0}
                 checked={field.value === 'Credit Card'}
+                onKeyDown={(e) => handleKeyDown(e, 'Credit Card')}
               >
                 <input type="radio" {...field} value={'Credit Card'} />
                 <CreditCard size={16} />
@@ -135,12 +146,17 @@ export function DeliveryAddressForm() {
               <PaymentMethodLabel
                 tabIndex={0}
                 checked={field.value === 'Debit Card'}
+                onKeyDown={(e) => handleKeyDown(e, 'Debit Card')}
               >
                 <input type="radio" {...field} value={'Debit Card'} />
                 <Bank size={16} />
                 Debit Card
               </PaymentMethodLabel>
-              <PaymentMethodLabel tabIndex={0} checked={field.value === 'Cash'}>
+              <PaymentMethodLabel
+                tabIndex={0}
+                checked={field.value === 'Cash'}
+                onKeyDown={(e) => handleKeyDown(e, 'Cash')}
+              >
                 <input type="radio" {...field} value={'Cash'} />
                 <Money size={16} />
                 Cash

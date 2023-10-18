@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from 'react'
 import { CoffeesContext } from './CoffeesContext'
 
-type SelectedPaymentMethodType = 'Credit Card' | 'Debit Card' | 'Cash'
+export type SelectedPaymentMethodType = 'Credit Card' | 'Debit Card' | 'Cash'
 
 export interface AddressFormData {
   zipCode: number
