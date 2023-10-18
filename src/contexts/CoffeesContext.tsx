@@ -60,7 +60,7 @@ export function CoffeesContextProvider({
     const id = selectedCoffee.coffee.id
     const isCoffeeInCart = coffeeCart.find((coffee) => coffee.coffee.id === id)
 
-    dispatch(addToCartAction(selectedCoffee, isCoffeeInCart, id))
+    dispatch(addToCartAction(selectedCoffee, !!isCoffeeInCart, id))
   }
 
   function removeFromCart(id: number) {

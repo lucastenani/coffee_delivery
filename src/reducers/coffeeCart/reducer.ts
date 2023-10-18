@@ -1,65 +1,56 @@
+import { produce } from 'immer'
 import { CoffeeCartProps } from '../../contexts/CoffeesContext'
 import { ActionTypes } from './actions'
 
 export function coffeeCartReducer(state: CoffeeCartProps[], action: any) {
-  const selectedCoffee = action.payload.selectedCoffee
+  const selectedCoffee: CoffeeCartProps = action.payload.selectedCoffee
+  const indexItem = state.findIndex((cartItem) => {
+    return cartItem.coffee.id === action.payload.id
+  })
 
   switch (action.type) {
     case ActionTypes.ADD_TO_CART:
       if (!action.payload.isCoffeeInCart) {
-        return [...state, action.payload.selectedCoffee]
+        return produce(state, (draft) => {
+          draft.push(action.payload.selectedCoffee)
+        })
       } else {
-        return state.map((itemCart) => {
-          if (itemCart.coffee.id === action.payload.id) {
-            const newAmount = itemCart.amount + selectedCoffee.amount
-            const newTotalPrice =
-              itemCart.totalPrice + selectedCoffee.totalPrice
+        if (indexItem < 0) {
+          return state
+        }
 
-            return {
-              ...itemCart,
-              amount: newAmount,
-              totalPrice: newTotalPrice,
-            }
-          } else {
-            return itemCart
-          }
+        return produce(state, (draft) => {
+          draft[indexItem].amount += selectedCoffee.amount
+          draft[indexItem].totalPrice += selectedCoffee.totalPrice
         })
       }
 
     case ActionTypes.REMOVE_FROM_CART:
-      return state.filter((coffee) => coffee.coffee.id !== action.payload.id)
+      return produce(state, (draft) => {
+        draft.splice(indexItem, 1)
+      })
 
     case ActionTypes.DECREMENT_AMOUNT_COFFEE:
-      return state
-        .map((itemCart) => {
-          if (itemCart.coffee.id === action.payload.id) {
-            const newAmount = itemCart.amount - 1
-            const newTotalPrice = itemCart.totalPrice - itemCart.coffee.price
+      if (indexItem < 0) {
+        return state
+      }
 
-            return {
-              ...itemCart,
-              amount: newAmount,
-              totalPrice: newTotalPrice,
-            }
-          } else {
-            return itemCart
-          }
-        })
-        .filter((coffee) => coffee.amount > 0)
-    case ActionTypes.INCREMENT_AMOUNT_COFFEE:
-      return state.map((itemCart) => {
-        if (itemCart.coffee.id === action.payload.id) {
-          const newAmount = itemCart.amount + 1
-          const newTotalPrice = itemCart.totalPrice + itemCart.coffee.price
-
-          return {
-            ...itemCart,
-            amount: newAmount,
-            totalPrice: newTotalPrice,
-          }
-        } else {
-          return itemCart
+      return produce(state, (draft) => {
+        draft[indexItem].amount -= 1
+        draft[indexItem].totalPrice -= draft[indexItem].coffee.price
+        if (draft[indexItem].amount <= 0) {
+          draft.splice(indexItem, 1)
         }
+      })
+
+    case ActionTypes.INCREMENT_AMOUNT_COFFEE:
+      if (indexItem < 0) {
+        return state
+      }
+
+      return produce(state, (draft) => {
+        draft[indexItem].amount += 1
+        draft[indexItem].totalPrice += draft[indexItem].coffee.price
       })
     default:
       return state
