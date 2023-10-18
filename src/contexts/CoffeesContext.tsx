@@ -5,7 +5,13 @@ import {
   useReducer,
   useState,
 } from 'react'
-import { ActionTypes, coffeeCartReducer } from '../reducers/coffeeCart'
+import {
+  addToCartAction,
+  decrementAmountCoffeeAction,
+  incrementAmountCoffeeAction,
+  removeFromCartAction,
+} from '../reducers/coffeeCart/actions'
+import { coffeeCartReducer } from '../reducers/coffeeCart/reducer'
 
 export interface CoffeeListProps {
   id: number
@@ -54,31 +60,19 @@ export function CoffeesContextProvider({
     const id = selectedCoffee.coffee.id
     const isCoffeeInCart = coffeeCart.find((coffee) => coffee.coffee.id === id)
 
-    dispatch({
-      type: ActionTypes.ADD_TO_CART,
-      payload: { selectedCoffee, isCoffeeInCart, id },
-    })
+    dispatch(addToCartAction(selectedCoffee, isCoffeeInCart, id))
   }
 
   function removeFromCart(id: number) {
-    dispatch({
-      type: ActionTypes.REMOVE_FROM_CART,
-      payload: { id },
-    })
+    dispatch(removeFromCartAction(id))
   }
 
   function decrementCoffeeAmount(id: number) {
-    dispatch({
-      type: ActionTypes.DECREMENT_AMOUNT_COFFEE,
-      payload: { id },
-    })
+    dispatch(decrementAmountCoffeeAction(id))
   }
 
   function incrementCoffeeAmount(id: number) {
-    dispatch({
-      type: ActionTypes.INCREMENT_AMOUNT_COFFEE,
-      payload: { id },
-    })
+    dispatch(incrementAmountCoffeeAction(id))
   }
 
   function currencyFormatter(value: number) {

@@ -1,11 +1,5 @@
-import { CoffeeCartProps } from '../contexts/CoffeesContext'
-
-export enum ActionTypes {
-  ADD_TO_CART = 'ADD_TO_CART',
-  REMOVE_FROM_CART = 'REMOVE_FROM_CART',
-  DECREMENT_AMOUNT_COFFEE = 'DECREMENT_AMOUNT_COFFEE',
-  INCREMENT_AMOUNT_COFFEE = 'INCREMENT_AMOUNT_COFFEE',
-}
+import { CoffeeCartProps } from '../../contexts/CoffeesContext'
+import { ActionTypes } from './actions'
 
 export function coffeeCartReducer(state: CoffeeCartProps[], action: any) {
   const selectedCoffee = action.payload.selectedCoffee
