@@ -5,7 +5,7 @@ import {
   useReducer,
   useState,
 } from 'react'
-import { coffeeCartReducer } from '../reducers/coffeeCart'
+import { ActionTypes, coffeeCartReducer } from '../reducers/coffeeCart'
 
 export interface CoffeeListProps {
   id: number
@@ -55,28 +55,28 @@ export function CoffeesContextProvider({
     const isCoffeeInCart = coffeeCart.find((coffee) => coffee.coffee.id === id)
 
     dispatch({
-      type: 'ADD_TO_CART',
+      type: ActionTypes.ADD_TO_CART,
       payload: { selectedCoffee, isCoffeeInCart, id },
     })
   }
 
   function removeFromCart(id: number) {
     dispatch({
-      type: 'REMOVE_FROM_CART',
+      type: ActionTypes.REMOVE_FROM_CART,
       payload: { id },
     })
   }
 
   function decrementCoffeeAmount(id: number) {
     dispatch({
-      type: 'DECREMENT_AMOUNT_COFFEE',
+      type: ActionTypes.DECREMENT_AMOUNT_COFFEE,
       payload: { id },
     })
   }
 
   function incrementCoffeeAmount(id: number) {
     dispatch({
-      type: 'INCREMENT_AMOUNT_COFFEE',
+      type: ActionTypes.INCREMENT_AMOUNT_COFFEE,
       payload: { id },
     })
   }
