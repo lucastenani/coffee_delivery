@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161073198331338872/espresso.png",
+    "tags": ["traditional"],
+    "name": "Traditional Espresso",
+    "description": "The traditional coffee made with hot water and ground beans.",
+    "price": 2.49
+  },
+  {
+    "id": 2,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161074032175755295/americano.png",
+    "tags": ["traditional"],
+    "name": "American Espresso",
+    "description": "Diluted espresso, less intense than the traditional.",
+    "price": 2.29
+  },
+  {
+    "id": 3,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161074871757979709/creamy-espresso.png?ex=6536fa3d&is=6524853d&hm=438df1b69a226560e45fdf385f1dd781fbcb2f907b680bcd82558d867f984a9c&",
+    "tags": ["traditional"],
+    "name": "Creamy Espresso",
+    "description": "Traditional espresso with creamy foam.",
+    "price": 2.69
+  },
+  {
+    "id": 4,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161075619929534464/iced-coffee.png?ex=6536faef&is=652485ef&hm=f72e0a95fea3183400a95d8537a3f6dc02e1e51742f04bce37e7c15240c25f74&",
+    "tags": ["traditional", "iced"],
+    "name": "Iced Espresso",
+    "description": "Beverage prepared with espresso and ice cubes.",
+    "price": 2.99
+  },
+  {
+    "id": 5,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161076507658162368/coffee-with-milk.png?ex=6536fbc3&is=652486c3&hm=363567fc4aaacfdd4aaab83998b44fe596154465ce4b294436af3147434f3ba0&",
+    "tags": ["traditional", "with milk"],
+    "name": "Coffee with Milk",
+    "description": "Half and half of traditional espresso with steamed milk.",
+    "price": 2.79
+  },
+  {
+    "id": 6,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161076724126195712/latte.png?ex=6536fbf6&is=652486f6&hm=020e339988403938c254a95be1e03d6c61691f2787de22e4a20a1f47d12132ef&",
+    "tags": ["traditional", "with milk"],
+    "name": "Latte",
+    "description": "A shot of espresso with double the milk and creamy foam.",
+    "price": 2.89
+  },
+  {
+    "id": 7,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161077209256173628/cappuccino.png?ex=6536fc6a&is=6524876a&hm=cde4ca312ebee9503d53f2c84f1fb07fc849866b88f303bf0a5d4bdba3cf633c&",
+    "tags": ["traditional", "with milk"],
+    "name": "Cappuccino",
+    "description": "Cinnamon-flavored drink made from equal parts of coffee, milk, and foam.",
+    "price": 3.19
+  },
+  {
+    "id": 8,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161077379704303696/macchiato.png?ex=6536fc93&is=65248793&hm=df3f0ca7fdc4831772f785347eb832255fa06ce1817da533211ffbb1881f7e37&",
+    "tags": ["traditional", "with milk"],
+    "name": "Macchiato",
+    "description": "Espresso mixed with a touch of hot milk and foam.",
+    "price": 2.59
+  },
+  {
+    "id": 9,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161077675276906547/mochaccino.png?ex=6536fcd9&is=652487d9&hm=e246709e136eb5fe561a4b1721ef7b0e5f1be47b586a67fe1453e162412de828&",
+    "tags": ["traditional", "with milk"],
+    "name": "Mochaccino",
+    "description": "Espresso with chocolate syrup, a small amount of milk, and foam.",
+    "price": 3.29
+  },
+  {
+    "id": 10,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161078041817124864/hot-chocolate.png?ex=6536fd30&is=65248830&hm=08ad171a77505f04d15f730a076f98a8e7f2171d8f37a24cf67693a47466383c&",
+    "tags": ["special", "with milk"],
+    "name": "Hot Chocolate",
+    "description": "Beverage made with chocolate dissolved in hot milk and coffee.",
+    "price": 3.49
+  },
+  {
+    "id": 11,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161078844288143410/cuban.png?ex=6536fdf0&is=652488f0&hm=9d2f9787671b5176b66c9e08fc1d1e7a4aa667d6a4a4b5b3f78e8a026f765569&",
+    "tags": ["special", "alcoholic", "iced"],
+    "name": "Cuban",
+    "description": "Iced espresso coffee drink with rum, cream, and mint.",
+    "price": 4.99
+  },
+  {
+    "id": 12,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161079012395851796/hawaiian.png?ex=6536fe18&is=65248918&hm=e04b7539f17fbe11761150fba0e52b8dc43e85ab93fa72022a9d2b511743f2e5&",
+    "tags": ["special"],
+    "name": "Hawaiian",
+    "description": "Sweetened beverage made with coffee and coconut milk.",
+    "price": 3.79
+  },
+  {
+    "id": 13,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161079676970737714/arabic.png?ex=6536feb6&is=652489b6&hm=af576792c7473a7987d544fb82c51c19847bbbed60716e9f8e06ded1c22e8a30&",
+    "tags": ["special"],
+    "name": "Arabian",
+    "description": "Beverage made with Arabian coffee beans and spices",
+    "price": 3.59
+  },
+  {
+    "id": 14,
+    "imagePath": "https://cdn.discordapp.com/attachments/883567372127055893/1161079883301146746/irish.png?ex=6536fee8&is=652489e8&hm=158d68f5c9c4663df3bc8c5fd0ef0d0ea0874b6209f703f6564c89f621238733&",
+    "tags": ["special", "alcoholic"],
+    "name": "Irish",
+    "description": "Beverage made with coffee, Irish whiskey, sugar, and whipped cream.",
+    "price": 4.49
+  }
+]
