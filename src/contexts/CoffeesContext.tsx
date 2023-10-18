@@ -1,4 +1,11 @@
-import { ReactNode, createContext, useEffect, useState } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
+import { coffeeCartReducer } from '../reducers/coffeeCart'
 
 export interface CoffeeListProps {
   id: number
@@ -40,64 +47,38 @@ export function CoffeesContextProvider({
   children,
 }: CoffeesContextProviderProps) {
   const [coffeeList, setCoffeeList] = useState<CoffeeListProps[]>([])
-  const [coffeeCart, setCoffeeCart] = useState<CoffeeCartProps[]>([])
+
+  const [coffeeCart, dispatch] = useReducer(coffeeCartReducer, [])
 
   function addToCart(selectedCoffee: CoffeeCartProps) {
     const id = selectedCoffee.coffee.id
     const isCoffeeInCart = coffeeCart.find((coffee) => coffee.coffee.id === id)
 
-    if (!isCoffeeInCart) {
-      setCoffeeCart((state) => [...state, selectedCoffee])
-    } else {
-      setCoffeeCart(
-        coffeeCart.map((coffee) => {
-          if (coffee.coffee.id === id) {
-            const newAmount = coffee.amount + selectedCoffee.amount
-            const newTotalPrice = coffee.totalPrice + selectedCoffee.totalPrice
-
-            return { ...coffee, amount: newAmount, totalPrice: newTotalPrice }
-          } else {
-            return coffee
-          }
-        }),
-      )
-    }
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: { selectedCoffee, isCoffeeInCart, id },
+    })
   }
 
   function removeFromCart(id: number) {
-    setCoffeeCart((state) => state.filter((coffee) => coffee.coffee.id !== id))
+    dispatch({
+      type: 'REMOVE_FROM_CART',
+      payload: { id },
+    })
   }
 
   function decrementCoffeeAmount(id: number) {
-    setCoffeeCart((state) => {
-      return state
-        .map((coffee) => {
-          if (coffee.coffee.id === id) {
-            const newAmount = coffee.amount - 1
-            const newTotalPrice = coffee.totalPrice - coffee.coffee.price
-
-            return { ...coffee, amount: newAmount, totalPrice: newTotalPrice }
-          } else {
-            return coffee
-          }
-        })
-        .filter((coffee) => coffee.amount > 0)
+    dispatch({
+      type: 'DECREMENT_AMOUNT_COFFEE',
+      payload: { id },
     })
   }
 
   function incrementCoffeeAmount(id: number) {
-    setCoffeeCart(
-      coffeeCart.map((coffee) => {
-        if (coffee.coffee.id === id) {
-          const newAmount = coffee.amount + 1
-          const newTotalPrice = coffee.totalPrice + coffee.coffee.price
-
-          return { ...coffee, amount: newAmount, totalPrice: newTotalPrice }
-        } else {
-          return coffee
-        }
-      }),
-    )
+    dispatch({
+      type: 'INCREMENT_AMOUNT_COFFEE',
+      payload: { id },
+    })
   }
 
   function currencyFormatter(value: number) {
