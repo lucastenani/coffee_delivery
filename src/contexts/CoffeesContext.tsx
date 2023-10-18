@@ -54,7 +54,15 @@ export function CoffeesContextProvider({
 }: CoffeesContextProviderProps) {
   const [coffeeList, setCoffeeList] = useState<CoffeeListProps[]>([])
 
-  const [coffeeCart, dispatch] = useReducer(coffeeCartReducer, [])
+  const [coffeeCart, dispatch] = useReducer(coffeeCartReducer, [], () => {
+    const storedStateAsJSON = localStorage.getItem(
+      '@coffee-delivery:coffee-cart',
+    )
+
+    if (storedStateAsJSON) {
+      return JSON.parse(storedStateAsJSON)
+    }
+  })
 
   function addToCart(selectedCoffee: CoffeeCartProps) {
     const id = selectedCoffee.coffee.id
@@ -100,6 +108,12 @@ export function CoffeesContextProvider({
       .then((response) => response.json())
       .then((data) => setCoffeeList(data))
   }, [])
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(coffeeCart)
+
+    localStorage.setItem('@coffee-delivery:coffee-cart', stateJSON)
+  }, [coffeeCart])
 
   return (
     <CoffeesContext.Provider
