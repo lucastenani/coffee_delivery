@@ -3,6 +3,12 @@ import { CoffeeCartProps } from '../../contexts/CoffeesContext'
 import { ActionTypes } from './actions'
 
 export function coffeeCartReducer(state: CoffeeCartProps[], action: any) {
+  if (action.type === ActionTypes.CLEAN_CART) {
+    return produce(state, (draft) => {
+      draft.splice(0, draft.length)
+    })
+  }
+
   const selectedCoffee: CoffeeCartProps = action.payload.selectedCoffee
   const indexItem = state.findIndex((cartItem) => {
     return cartItem.coffee.id === action.payload.id

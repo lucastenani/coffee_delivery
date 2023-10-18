@@ -3,6 +3,7 @@ import { CoffeeCartProps } from '../../contexts/CoffeesContext'
 export enum ActionTypes {
   ADD_TO_CART = 'ADD_TO_CART',
   REMOVE_FROM_CART = 'REMOVE_FROM_CART',
+  CLEAN_CART = 'CLEAN_CART',
   DECREMENT_AMOUNT_COFFEE = 'DECREMENT_AMOUNT_COFFEE',
   INCREMENT_AMOUNT_COFFEE = 'INCREMENT_AMOUNT_COFFEE',
 }
@@ -22,6 +23,12 @@ export function removeFromCartAction(id: number) {
   return {
     type: ActionTypes.REMOVE_FROM_CART,
     payload: { id },
+  }
+}
+
+export function cleanCartAction() {
+  return {
+    type: ActionTypes.CLEAN_CART,
   }
 }
 

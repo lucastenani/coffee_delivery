@@ -1,4 +1,5 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
+import { CoffeesContext } from './CoffeesContext'
 
 type SelectedPaymentMethodType = 'Credit Card' | 'Debit Card' | 'Cash'
 
@@ -28,9 +29,13 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
   const [deliveryAddress, setDeliveryAddress] =
     useState<AddressFormData | null>(null)
 
+  const { cleanCart } = useContext(CoffeesContext)
+
   function confirmOrder(data: AddressFormData) {
     setDeliveryAddress(data)
+    cleanCart()
   }
+
   return (
     <OrderContext.Provider value={{ deliveryAddress, confirmOrder }}>
       {children}

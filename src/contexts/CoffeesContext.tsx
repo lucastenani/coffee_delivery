@@ -7,6 +7,7 @@ import {
 } from 'react'
 import {
   addToCartAction,
+  cleanCartAction,
   decrementAmountCoffeeAction,
   incrementAmountCoffeeAction,
   removeFromCartAction,
@@ -38,6 +39,7 @@ interface CoffeesContextData {
   totalOrderPrice: string
   addToCart: (selectedCoffee: CoffeeCartProps) => void
   removeFromCart: (id: number) => void
+  cleanCart: () => void
   decrementCoffeeAmount: (id: number) => void
   incrementCoffeeAmount: (id: number) => void
   currencyFormatter: (value: number) => string
@@ -73,6 +75,10 @@ export function CoffeesContextProvider({
 
   function removeFromCart(id: number) {
     dispatch(removeFromCartAction(id))
+  }
+
+  function cleanCart() {
+    dispatch(cleanCartAction())
   }
 
   function decrementCoffeeAmount(id: number) {
@@ -129,6 +135,7 @@ export function CoffeesContextProvider({
         removeFromCart,
         decrementCoffeeAmount,
         incrementCoffeeAmount,
+        cleanCart,
       }}
     >
       {children}
